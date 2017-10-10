@@ -9,10 +9,10 @@
 using namespace std;
 
 
-
 int main() {
-
 	
+	std::string t;
+
 
 	return 0;
 }
