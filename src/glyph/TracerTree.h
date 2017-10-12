@@ -9,11 +9,12 @@
 #define GLYPH_TRACERTREE_H_
 
 // Interface strategy tracking
-class TracerTree {
+class TracerTree : public Proxy {
 public:
+	virtual ~TracerTree();
 	TracerTree();
-	void Handler();
-	void Action();
+	virtual void Handler();
+	virtual void Action();
 
 };
 
