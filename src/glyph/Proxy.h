@@ -11,6 +11,15 @@
 #include <iostream>
 #include <set>
 
+class BrenchMsg {
+	// state -2 -1 0 1 2 ...
+	// Direction
+	// Template parameter for data
+	// and need Don't forget of Leaf item in composition
+
+	// Maybe will  need
+};
+
 class Proxy {
 public:
 	virtual ~Proxy();
@@ -18,7 +27,7 @@ public:
 	void SendChildren();
 
 
-	virtual void DoFormParent(/*-2 -1 0 1 2*/) = 0;
+	virtual void DoFormParent(/* BrenchMsg * */) = 0;
 	virtual void DoFormChildren(/*-2 -1 0 1 2*/) = 0;
 
 
