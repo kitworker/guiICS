@@ -8,14 +8,32 @@
 #ifndef GLYPH_PROXY_H_
 #define GLYPH_PROXY_H_
 
+#include <iostream>
+#include <set>
 
 class Proxy {
 public:
-	void SendParent() = 0;
-	void SendChildren() = 0;
+	virtual ~Proxy();
+	void SendParent();
+	void SendChildren();
 
-protected:
-	Proxy() = 0;
+
+	virtual void DoFormParent(/*-2 -1 0 1 2*/) = 0;
+	virtual void DoFormChildren(/*-2 -1 0 1 2*/) = 0;
+
+
+private:
+	Proxy(int id) ;
+	int mId;
+	Proxy* parent;
+	Proxy* children;
+
+
+
+	// test uniqueness id
+	std::set<int> pullId;
+	bool IsUniquenessId(int id);
+
 
 };
 
