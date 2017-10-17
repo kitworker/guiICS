@@ -44,13 +44,9 @@ private:
 	Proxy* parent;
 	Proxy* children;
 
-
-
 	// test uniqueness id
 	std::set<int> pullId;
 	bool IsUniquenessId(int id);
-
-
 };
 
 
