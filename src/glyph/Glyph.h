@@ -11,13 +11,16 @@
 #include <iostream>
 #include <list>
 
+// for strategyComposer push to container
+// for strategyLeaf make algorithm of BreachMsg ( ProcessStateOfMsg -2 -1 0 1 2) That call it?
 class Glyph {
 public:
 	virtual ~Glyph();
-	virtual void Insert(Glyph*);
+	virtual void Insert(Glyph*);  // make like strategyComposer->insert  / strategyLeaf->insert() (generation exception???), but it strategies
+								  // should make as orthogonality
 
 protected:
-	Glyph(int proxy);
+	Glyph(int proxy);			  // when we can using Glyph(int proxy, strategy = strategyLeaf  )  for default
 private:
 	std::list<Glyph*> glyphes;
 };

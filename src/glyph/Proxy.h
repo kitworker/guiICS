@@ -11,6 +11,13 @@
 #include <iostream>
 #include <set>
 
+enum IdGlyph {
+	// Static >= 0  /* it comfortable for ABN_ of Photon */
+
+	// Dynamic  < 0
+};
+
+
 class BrenchMsg {
 	// state -2 -1 0 1 2 ...
 	// Direction
