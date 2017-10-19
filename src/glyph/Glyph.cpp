@@ -23,3 +23,8 @@ void Glyph::Insert(Glyph* glyph) {
 Frame::Frame(int proxy) :Glyph(proxy) {
 	std::cout << "constructor: Frame \n";
 }
+
+
+TestTest::TestTest() {
+	std::cout << "created testtest " << 1  << "\n";
+}

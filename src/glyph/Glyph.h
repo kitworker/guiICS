@@ -31,6 +31,10 @@ public:
 
 };
 
+class TestTest {
+public:
+	TestTest();
+};
 
 
 

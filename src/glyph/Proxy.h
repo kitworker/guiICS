@@ -38,8 +38,8 @@ public:
 	virtual void DoFormChildren(/*-2 -1 0 1 2*/) = 0;
 
 
-private:
 	Proxy(int id) ;
+private:
 	int mId;
 	Proxy* parent;
 	Proxy* children;

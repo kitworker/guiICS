@@ -15,9 +15,9 @@ class Proto {
 public:
 	Proto();
 
-	Glyph* Clone()=0;
+	//Glyph* Clone()=0;
 	void Init();
-	Builder* GetBuilder()=0;
+	//Builder* GetBuilder()=0;
 
 
 };
