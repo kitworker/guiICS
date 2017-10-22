@@ -4,7 +4,7 @@
 export PATH=$CXXTEST/bin:$PATH
 
 # @main:
-cxxtestgen --error-printer -o runner.cpp TestGlyph.h
+cxxtestgen --error-printer -o runner.cpp TestProxy.h
 # @:main
 
 # @compile:

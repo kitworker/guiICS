@@ -34,20 +34,22 @@ public:
 	void SendChildren();
 
 
-	virtual void DoFormParent(/* BrenchMsg * */) = 0;
-	virtual void DoFormChildren(/*-2 -1 0 1 2*/) = 0;
-
 
 	Proxy(int id) ;
+protected:
+	virtual void DoFormParent(/* BrenchMsg * */);
+	virtual void DoFormChildren(/*-2 -1 0 1 2*/);
+
 private:
 	int mId;
 	Proxy* parent;
 	Proxy* children;
 
 	// test uniqueness id
-	std::set<int> pullId;
-	bool IsUniquenessId(int id);
+	static std::set<int> pullId;
+ 	static bool IsUniquenessId(int id);
 };
 
+std::set<int> Proxy::pullId;
 
 #endif /* GLYPH_PROXY_H_ */

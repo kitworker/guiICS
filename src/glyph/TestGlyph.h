@@ -20,28 +20,19 @@
 class MyTestGlyph : public CxxTest::TestSuite
 {
 public:
-    void testAddition(void)
-    {
-        TS_ASSERT(3 - 1 > 1);
-        TS_ASSERT_EQUALS(1 + 1, 2);
-    }
-
     void testCreate(void)
     {
         TS_TRACE("Created point Glyph");
         int id = 1;
-        Glyph* glyph = new Frame(id);
+        Glyph* glyph;
 
-        glyph->Insert(glyph);
+        TS_ASSERT_THROWS_NOTHING( glyph = new Frame(id));
 
-   //   TS_TRACE("Next");
+        TS_ASSERT_THROWS_NOTHING(delete glyph);
 
 
-
-        TS_ASSERT_EQUALS(2 * 2, 5);
-        TS_TRACE("Finishing multiplication test");
+        TS_TRACE("Finishing created Glyph test");
     }
-
 };
 
 
