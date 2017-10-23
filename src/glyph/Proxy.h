@@ -11,6 +11,8 @@
 #include <iostream>
 #include <set>
 
+
+#include "../Exception.h"
 enum IdGlyph {
 	// Static >= 0  /* it comfortable for ABN_ of Photon */
 
@@ -34,8 +36,8 @@ public:
 	void SendChildren();
 
 
+	Proxy(int id)  throw( Exception & ) ;
 
-	Proxy(int id) ;
 protected:
 	virtual void DoFormParent(/* BrenchMsg * */);
 	virtual void DoFormChildren(/*-2 -1 0 1 2*/);

@@ -10,6 +10,7 @@
 
 #include "Proxy.h"
 #include "Proxy.cpp"
+#include "../Exception.cpp"
 // MyTestProxy.h
 #include <cxxtest/TestSuite.h>
 
@@ -23,25 +24,24 @@ public:
         Proxy* proxy;
 
         TS_ASSERT_THROWS_NOTHING( proxy = new Proxy(id));
-
-        TS_ASSERT_THROWS_NOTHING( proxy = new Proxy(id));
-
-
         TS_ASSERT_THROWS_NOTHING(delete proxy);
 
 
         TS_TRACE("Finishing created Glyph test");
     }
 
-     void testBad(void)
+
+    void testUnicId(void)
     {
         TS_TRACE("Created point Glyph");
         int id = 1;
         Proxy* proxy;
 
-        TS_ASSERT_THROWS_NOTHING( proxy = new Proxy(id));
 
-        TS_ASSERT_THROWS_NOTHING(Proxy * p = new Proxy(id));
+        TS_ASSERT_THROWS( ( new Proxy(id)), Exception &);
+
+
+        TS_ASSERT_THROWS_EQUALS( ( new Proxy(id)), const Exception & e, e.what(), "double");
 
 
         TS_ASSERT_THROWS_NOTHING(delete proxy);
@@ -49,9 +49,6 @@ public:
 
         TS_TRACE("Finishing created Glyph test");
     }
-
-
-
 
 };
 

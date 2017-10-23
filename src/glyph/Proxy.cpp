@@ -5,14 +5,17 @@
  *      Author: knik
  */
 
-#include "Proxy.h"
 #include <assert.h>
 
-Proxy::~Proxy() {
+#include "Proxy.h"
+#include "../Exception.h"
+
+
+Proxy::~Proxy()  {
 	std::cout << "Destructor: Proxy  id = " << mId << "\n ";
 }
 
-Proxy::Proxy(int id) {
+Proxy::Proxy(int id) throw( Exception & )  {
 
 	// need add test on unique id
 	if(IsUniquenessId(id)) {
@@ -21,9 +24,9 @@ Proxy::Proxy(int id) {
 
 	} else {
 		std::cout << " double id of proxy" << "\n";
-		assert(! "not uniqueness id of Proxy" );
-	}
+		throw ( Exception( "double" ) );
 
+	}
 	parent = 0;
 	children = 0;
 
@@ -38,8 +41,6 @@ void Proxy::SendChildren() {
 		DoFormChildren();
 
 	}
-
-
 }
 
 bool Proxy::IsUniquenessId(int id) {
