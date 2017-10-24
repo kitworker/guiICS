@@ -26,6 +26,9 @@ public:
         TS_ASSERT_THROWS_NOTHING( proxy = new Proxy(id));
         TS_ASSERT_THROWS_NOTHING(delete proxy);
 
+        TS_ASSERT_THROWS_NOTHING( Proxy(++id));
+
+
 
         TS_TRACE("Finishing created Glyph test");
     }
