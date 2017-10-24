@@ -11,12 +11,17 @@
 #include "ProxyTracer.h"
 
 // Interface strategy tracking
-class TracerTree : public ProxyTracer {
+class Pesenter : public ProxyTracer {
 public:
-	virtual ~TracerTree();
-	TracerTree();
+	virtual ~Pesenter();
+	Pesenter();
 	virtual void Handler();
 	virtual void Action();
+
+	// TODO need relies
+	//! Any commands  correpondetion own strategies
+
+
 
 };
 

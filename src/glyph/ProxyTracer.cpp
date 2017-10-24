@@ -14,6 +14,8 @@
 
 ProxyTracer::~ProxyTracer()  {
 	std::cout << "Destructor: Proxy  id = " << mId << "\n ";
+	//TODO maybe delete form set  pullId.erase(mId);? when not ready not using id
+
 }
 
 ProxyTracer::ProxyTracer(int id) throw( Exception & )  {
@@ -25,21 +27,22 @@ ProxyTracer::ProxyTracer(int id) throw( Exception & )  {
 
 	} else {
 		std::cout << " double id of proxy" << "\n";
-		throw ( Exception( "double" ) );
+		throw ( Exception("double") );
 
 	}
 	parent = 0;
 	children = 0;
 
-
-	std::cout << "Constructor: Proxy  id = " << id << "\n ";
+	std::cout << "\nConstructor: Proxy  id = " << id << "\n ";
 }
 
 void ProxyTracer::SendChildren() {
 	if(children != 0){
 		children->SendChildren();
-		// make template method ...
-		DoFormChildren();
+		//old make template method ...
+		//DoFormChildren();
+
+		// need object Presenter
 
 	}
 }
@@ -48,10 +51,4 @@ bool ProxyTracer::IsUniquenessId(int id) {
 	return  pullId.find(id) == pullId.end();
 }
 
-void ProxyTracer::DoFormParent() {
-	//assert(! && "it bibb of Proxy");
-}
 
-void ProxyTracer::DoFormChildren() {
-	//assert(! && "it bibb of Proxy");
-}

@@ -43,8 +43,9 @@ public:
 	ProxyTracer(int id)  throw( Exception & ) ;
 
 protected:
-	virtual void DoFormParent(/* BrenchMsg * */);
-	virtual void DoFormChildren(/*-2 -1 0 1 2*/);
+// it's comment about there  duplicated  function Handler() of presenter
+//	virtual void DoFormParent(/* BrenchMsg * */);
+//	virtual void DoFormChildren(/*-2 -1 0 1 2*/);
 
 private:
 	int mId;
