@@ -5,17 +5,18 @@
  *      Author: knik
  */
 
+#include "ProxyTracer.h"
+
 #include <assert.h>
 
-#include "Proxy.h"
 #include "../Exception.h"
 
 
-Proxy::~Proxy()  {
+ProxyTracer::~ProxyTracer()  {
 	std::cout << "Destructor: Proxy  id = " << mId << "\n ";
 }
 
-Proxy::Proxy(int id) throw( Exception & )  {
+ProxyTracer::ProxyTracer(int id) throw( Exception & )  {
 
 	// need add test on unique id
 	if(IsUniquenessId(id)) {
@@ -34,7 +35,7 @@ Proxy::Proxy(int id) throw( Exception & )  {
 	std::cout << "Constructor: Proxy  id = " << id << "\n ";
 }
 
-void Proxy::SendChildren() {
+void ProxyTracer::SendChildren() {
 	if(children != 0){
 		children->SendChildren();
 		// make template method ...
@@ -43,14 +44,14 @@ void Proxy::SendChildren() {
 	}
 }
 
-bool Proxy::IsUniquenessId(int id) {
+bool ProxyTracer::IsUniquenessId(int id) {
 	return  pullId.find(id) == pullId.end();
 }
 
-void Proxy::DoFormParent() {
+void ProxyTracer::DoFormParent() {
 	//assert(! && "it bibb of Proxy");
 }
 
-void Proxy::DoFormChildren() {
+void ProxyTracer::DoFormChildren() {
 	//assert(! && "it bibb of Proxy");
 }

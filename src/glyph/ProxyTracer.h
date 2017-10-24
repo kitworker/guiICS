@@ -20,23 +20,27 @@ enum IdGlyph {
 };
 
 
+
+
 class BrenchMsg {
 	// state -2 -1 0 1 2 ...
 	// Direction
 	// Template parameter for data
 	// and need Don't forget of Leaf item in composition
 
-	// Maybe will  need
+	// Need pattern command for
+
+
 };
 
-class Proxy {
+class ProxyTracer {
 public:
-	virtual ~Proxy();
-	void SendParent();
-	void SendChildren();
+	virtual ~ProxyTracer();
+	void SendParent(/* BrenchMsg * */);
+	void SendChildren(/*-2 -1 0 1 2*/);
 
 
-	Proxy(int id)  throw( Exception & ) ;
+	ProxyTracer(int id)  throw( Exception & ) ;
 
 protected:
 	virtual void DoFormParent(/* BrenchMsg * */);
@@ -44,14 +48,14 @@ protected:
 
 private:
 	int mId;
-	Proxy* parent;
-	Proxy* children;
+	ProxyTracer* parent;
+	ProxyTracer* children;
 
 	// test uniqueness id
 	static std::set<int> pullId;
  	static bool IsUniquenessId(int id);
 };
 
-std::set<int> Proxy::pullId;
+std::set<int> ProxyTracer::pullId;
 
 #endif /* GLYPH_PROXY_H_ */

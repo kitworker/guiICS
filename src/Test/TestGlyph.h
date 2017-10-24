@@ -12,8 +12,8 @@
 #include <set>
 #include <list>
 
-#include "Glyph.h"
-#include "Glyph.cpp"
+#include "../glyph/Glyph.h"
+#include "../glyph/Glyph.cpp"
 // MyTestProxy.h
 #include <cxxtest/TestSuite.h>
 

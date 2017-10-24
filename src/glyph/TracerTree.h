@@ -8,8 +8,10 @@
 #ifndef GLYPH_TRACERTREE_H_
 #define GLYPH_TRACERTREE_H_
 
+#include "ProxyTracer.h"
+
 // Interface strategy tracking
-class TracerTree : public Proxy {
+class TracerTree : public ProxyTracer {
 public:
 	virtual ~TracerTree();
 	TracerTree();
