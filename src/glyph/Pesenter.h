@@ -19,7 +19,7 @@ public:
 	virtual void Action();
 
 	// TODO need relies
-	//! Any commands  appropriate own strategies
+	// Any commands  appropriate own strategies
 
 
 

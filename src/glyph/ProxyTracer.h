@@ -13,6 +13,10 @@
 
 
 #include "../Exception.h"
+
+
+#include "Command.h"
+
 enum IdGlyph {
 	// Static >= 0  /* it comfortable for ABN_ of Photon */
 
@@ -21,22 +25,32 @@ enum IdGlyph {
 
 
 
-
+/*
+ * The class represent the wrapper for macro-commands
+ * as pattern state
+ */
 class BrenchMsg {
 	// state -2 -1 0 1 2 ...
+
 	// Direction:
 	/*
-	 *\param	formChild
+	 *\param formChild
+	 *\param fromParent
 	 */
-	//\
+private:
+	// Commands
+	/*
+	 * Commands have mast run execute and unexecute for test
+	 */
+
+
+	//
 	// Template parameter for data
 	// and need Don't forget of Leaf item in composition
 
-	// Need pattern command for
-
 
 };
-
+//
 class ProxyTracer {
 public:
 	virtual ~ProxyTracer();
