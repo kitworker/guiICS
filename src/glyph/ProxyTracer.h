@@ -24,7 +24,11 @@ enum IdGlyph {
 
 class BrenchMsg {
 	// state -2 -1 0 1 2 ...
-	// Direction
+	// Direction:
+	/*
+	 *\param	formChild
+	 */
+	//\
 	// Template parameter for data
 	// and need Don't forget of Leaf item in composition
 
