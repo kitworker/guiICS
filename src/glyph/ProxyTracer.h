@@ -1,7 +1,7 @@
 /*
  * Proxy.h
  *
- *  Created on: 9 окт. 2017 г.
+ *  Created on: 9 Ð¾ÐºÑ‚. 2017 Ð³.
  *      Author: knik
  */
 
@@ -30,7 +30,14 @@ enum IdGlyph {
  * as pattern state
  */
 class BrenchMsg {
-	// state -2 -1 0 1 2 ...
+	// Type
+	/*
+	 * for Branch
+	 * for Observer
+	 * not broadCast?
+	 */
+
+	//  Msg state -2 -1 0 1 2 ... // Задел
 
 	// Direction:
 	/*
@@ -38,7 +45,7 @@ class BrenchMsg {
 	 *\param fromParent
 	 */
 private:
-	// Commands
+	// (macro) Commands
 	/*
 	 * Commands have mast run execute and unexecute for test
 	 */
@@ -56,6 +63,7 @@ public:
 	virtual ~ProxyTracer();
 	void SendParent(/* BrenchMsg * */);
 	void SendChildren(/*-2 -1 0 1 2*/);
+	// SendObservers(Msg)
 
 
 	ProxyTracer(int id)  throw( Exception & ) ;

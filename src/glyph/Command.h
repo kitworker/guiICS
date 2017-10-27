@@ -21,16 +21,23 @@ protected:
 	ICommand();
 };
 
+template <class TContext>
+class CommandTimer {
+
+};
+
 /* Use this class object as a branch messages parameter
  * Object command as a strategy
  */
 template <class TContext>
 class MacroCommand : ICommand<TContext> {
-public:
-	MacroCommand();
+public: MacroCommand();
+	virtual ~MacroCommand();
+	virtual void Execute(TContext) ;
+	virtual void Unexecute(TContext);
 private:
-
-	Collection<MacroCommand, std::list> mCmd;
+	// The collection contains the history of the commands any client
+	Collection<ICommand<TContext>, std::list> mCmd;
 
 };
 
