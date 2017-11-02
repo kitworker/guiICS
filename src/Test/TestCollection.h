@@ -40,11 +40,41 @@ public:
 			finish = *coll->CurrentItem();
 		}
 		TS_ASSERT_EQUALS(finish, 3);
+	}
 
+	void testClone(void) {
+		TS_TRACE("Test clone collection");
+
+		TS_ASSERT_THROWS_NOTHING( cloneColl = coll->Clone() );
+
+		cloneColl->Append(4);
+		cloneColl->Append(5);
+		cloneColl->Append(6);
+
+//		coll->Append(-1); // test of test
+
+		testIteration();
+		TS_TRACE("Finishing test clone collection");
+	}
+
+	void test5IterCloneColl(void) {
+
+		int finish = -1;
+
+		coll->First();
+
+		TS_ASSERT_EQUALS(  *coll->CurrentItem(), 1 );
+
+		for (; !coll->IsDone(); coll->Next()) {
+			finish = *coll->CurrentItem();
+		}
+
+		TS_ASSERT_EQUALS(finish, 6);
 	}
 
 private:
 	Collection<int, std:: list> *coll;
+	Collection<int, std:: list> *cloneColl;
 
 
 };

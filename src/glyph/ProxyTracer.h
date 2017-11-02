@@ -21,7 +21,7 @@ enum IdGlyph {
 	// Static >= 0  /* it comfortable for ABN_ of Photon */
 
 	// Dynamic  < 0
-};
+}
 
 
 

@@ -17,6 +17,7 @@ public:
 	virtual void Execute(TContext) = 0;
 	virtual void Unexecute(TContext) = 0;
 	virtual char* PrintLog(const char*);
+	//virtual ICommand* ICommand() = 0;
 
 protected:
 	ICommand();
@@ -46,8 +47,8 @@ public:
  * Object command as a strategy
  *
  *
- * Execute/Unexecute предосталяет доступ ко всем сомандам
- * но будут ли они выполнены решает контекст(proxy)
+ * Execute/Unexecute Ð¿Ñ€ÐµÐ´Ð¾Ñ�Ñ‚Ð°Ð»Ñ�ÐµÑ‚ Ð´Ð¾Ñ�Ñ‚ÑƒÐ¿ ÐºÐ¾ Ð²Ñ�ÐµÐ¼ Ñ�Ð¾Ð¼Ð°Ð½Ð´Ð°Ð¼
+ * Ð½Ð¾ Ð±ÑƒÐ´ÑƒÑ‚ Ð»Ð¸ Ð¾Ð½Ð¸ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ñ‹ Ñ€ÐµÑˆÐ°ÐµÑ‚ ÐºÐ¾Ð½Ñ‚ÐµÐºÑ�Ñ‚(proxy)
  *
  */
 template <class TContext>

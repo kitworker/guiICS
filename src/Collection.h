@@ -45,6 +45,17 @@ public:
         return &(*curr);
     }
 
+    Collection* Clone() {
+    	Collection* coll = new Collection();
+    	coll->contain = contain;
+    	  int n = 0;
+
+    	  for (int i = 0; i < coll->contain.size(); i++)
+    		  coll->contain[n++] =  coll->contain[i];
+
+    	return coll;
+    }
+
 private:
     iterator begin() {
         return contain.begin();
