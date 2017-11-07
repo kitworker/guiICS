@@ -18,14 +18,20 @@ ICommand<TContext>::ICommand() {
 }
 
 template <class TContext>
-char* ICommand<TContext>::PrintLog(const char* str) {
+void ICommand<TContext>::PrintLog(std::string str) {
+	std::cout << str << " \n ";
+	log =  str;
+}
 
-	return str;
+//MacroCommamd
+template <class TContext>
+MacroCommand<TContext>::~MacroCommand() {
+	ICommand<TContext>::PrintLog("delete MacroCommand");
 }
 
 template <class TContext>
 MacroCommand<TContext>::MacroCommand(){
-
+	ICommand<TContext>::PrintLog("create MacroCommand");
 }
 
 // Timer client's commands
@@ -40,12 +46,9 @@ CommandTimer<TContext>::~CommandTimer() {
 
 template <class TContext>
 void CommandTimer<TContext>::Execute(TContext proxy) { // or condition
-
-
-	std::cout << "command timer \n" ;
-
-
+	ICommand<TContext>::PrintLog("command timer");
 }
+
 template <class TContext>
 void CommandTimer<TContext>::Unexecute(TContext proxy) {
 	std::cout << "uncommand timer \n" ;
@@ -69,6 +72,5 @@ template <class TContext>
 void CommandUser<TContext>::Unexecute(TContext t) {
 	std::cout << " undo command timer \n" ;
 }
-
 
 

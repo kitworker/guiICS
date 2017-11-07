@@ -30,18 +30,7 @@ public:
 		TS_TRACE("Finish tested command \n");
 	}
 
-	void test(void) {
-		TS_TRACE("Test command timer \n");
 
-		CommandTimer<int>* cmdTimer ;
-
-		TS_ASSERT_THROWS_NOTHING(cmdTimer = new CommandTimer<int>());
-
-		int proxy;
-		cmdTimer->Execute(1);
-
-		TS_TRACE("Finish tested command \n");
-	}
 };
 
 
