@@ -15,7 +15,7 @@
 
 class TestCollection: public CxxTest::TestSuite {
 public:
-	void testCreate(void){
+	void test1Create(void){
 		TS_TRACE("Create Collection");
 
 
@@ -25,56 +25,46 @@ public:
 		TS_TRACE("Finishing test created Collection");
 	}
 
-	void testAdd(void) {
+	void test2Add(void) {
 		TS_TRACE("Create Collection");
-		coll->Append(1);
-		coll->Append(2);
-		coll->Append(3);
+		test = 0;
+		coll->Append(++test);
+		coll->Append(++test);
+		coll->Append(++test);
 		TS_TRACE("Finishing test created Collection");
 	}
 
-	void testIteration(void) {
+	void test3Iteration(void) {
+		TS_TRACE("Test iterator");
 
-		int finish = -1;
+		int finish = 0;
 		for (coll->First(); !coll->IsDone(); coll->Next()) {
-			finish = *coll->CurrentItem();
+			TS_ASSERT_EQUALS(*coll->CurrentItem(), ++finish);
 		}
-		TS_ASSERT_EQUALS(finish, 3);
+		TS_TRACE("Finishing iterator");
 	}
 
-	void testClone(void) {
-		TS_TRACE("Test clone collection");
+	void test4Clone () {
+		TS_TRACE("Test clone");
+		Collection<int, std::list>*  clon = coll->Clone();
+		//int test = 3;
+		clon->Append(++test);
+		clon->Append(++test);
+		clon->Append(++test);
 
-		TS_ASSERT_THROWS_NOTHING( cloneColl = coll->Clone() );
-
-		cloneColl->Append(4);
-		cloneColl->Append(5);
-		cloneColl->Append(6);
-
-//		coll->Append(-1); // test of test
-
-		testIteration();
-		TS_TRACE("Finishing test clone collection");
-	}
-
-	void test5IterCloneColl(void) {
-
-		int finish = -1;
-
-		coll->First();
-
-		TS_ASSERT_EQUALS(  *coll->CurrentItem(), 1 );
-
-		for (; !coll->IsDone(); coll->Next()) {
-			finish = *coll->CurrentItem();
+		test3Iteration();
+		int finish = 0;
+		for (clon->First(); !clon->IsDone(); clon->Next()) {
+				TS_ASSERT_EQUALS(*clon->CurrentItem(), ++finish);
 		}
 
-		TS_ASSERT_EQUALS(finish, 6);
+
+		TS_TRACE("Finishing clone");
 	}
 
 private:
-	Collection<int, std:: list> *coll;
-	Collection<int, std:: list> *cloneColl;
+	int test;
+	Collection<int, std::list>* coll;
 
 
 };
