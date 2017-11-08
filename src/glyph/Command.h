@@ -10,7 +10,9 @@
 
 #include "../Collection.h"
 #include <string>
-
+// Unwanted using virtual function in template class
+// 1) Template template <class TContext> replace on Bridge
+//  ) Command as Prototype
 template <class TContext>
 class ICommand {
 public:
@@ -18,6 +20,7 @@ public:
 	virtual void Execute(TContext) = 0;
 	virtual void Unexecute(TContext) = 0;
 	void PrintLog(std::string);
+	virtual ICommand* Clone() = 0;
 	//virtual ICommand* ICommand() = 0;
 
 protected:
@@ -26,7 +29,7 @@ private:
 	std::string log;
 };
 
-// Unwanted using virtual function in template class
+
 template <class TContext>
 class CommandTimer : public ICommand<TContext> {
 public:
@@ -35,6 +38,7 @@ public:
 	CommandTimer();
 	virtual void Execute(TContext);
 	virtual void Unexecute(TContext);
+	virtual ICommand<TContext>* Clone();
 };
 
 
@@ -45,6 +49,7 @@ public:
 	CommandUser();
 	virtual void Execute(TContext);
 	virtual void Unexecute(TContext);
+	virtual ICommand<TContext>* Clone();
 };
 
 /* Use this class object as a branch messages parameter
@@ -63,6 +68,7 @@ public: MacroCommand();
 	virtual void Add(ICommand<TContext>);
 	virtual void Execute(TContext proxy) ;
 	virtual void Unexecute(TContext);
+	virtual ICommand<TContext>* Clone();
 private:
 	// The collection contains the history of the commands any client
 	Collection<ICommand<TContext>, std::list> mCmd;

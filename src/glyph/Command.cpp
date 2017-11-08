@@ -23,15 +23,22 @@ void ICommand<TContext>::PrintLog(std::string str) {
 	log =  str;
 }
 
+
 //MacroCommamd
 template <class TContext>
 MacroCommand<TContext>::~MacroCommand() {
 	ICommand<TContext>::PrintLog("delete MacroCommand");
 }
-
 template <class TContext>
 MacroCommand<TContext>::MacroCommand(){
 	ICommand<TContext>::PrintLog("create MacroCommand");
+}
+template <class TContext>
+ICommand<TContext>* MacroCommand<TContext>::Clone() {
+	ICommand<TContext>* clone = new MacroCommand<TContext>();
+	clone = this;
+	return clone;
+
 }
 
 // Timer client's commands
@@ -52,6 +59,24 @@ void CommandTimer<TContext>::Execute(TContext proxy) { // or condition
 template <class TContext>
 void CommandTimer<TContext>::Unexecute(TContext proxy) {
 	std::cout << "uncommand timer \n" ;
+}
+
+template <class TContext>
+ICommand<TContext>* CommandTimer<TContext>::Clone()  {
+	// Exist possibility make it as Template Factory Method
+	//	ICommand<TContext>* clone = new T<TContext>();
+	ICommand<TContext>* clone = new CommandTimer<TContext>();
+	clone = this;
+	return  clone;
+}
+
+template <class TContext>
+ICommand<TContext>* CommandUser<TContext>::Clone()  {
+	// Exist possibility make it as Template Factory Method
+	//	ICommand<TContext>* clone = new T<TContext>();
+	ICommand<TContext>* clone = new CommandTimer<TContext>();
+	clone = this;
+	return  clone;
 }
 
 //User's commands
