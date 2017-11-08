@@ -13,13 +13,10 @@
 #include "../glyph/Command.h"
 #include "../glyph/Command.cpp"
 
-
 class TestCommand: public CxxTest::TestSuite {
 public:
-	void testCreate(void) {
+	void test1Create(void) {
 		TS_TRACE("Test command timer \n");
-
-		CommandTimer<int>* cmdTimer ;
 
 		TS_ASSERT_THROWS_NOTHING(cmdTimer = new CommandTimer<int>());
 
@@ -30,8 +27,16 @@ public:
 		TS_TRACE("Finish tested command \n");
 	}
 
+	void test2Clone(void) {
+		TS_TRACE("Test clone command");
+		ICommand<int>* clone = cmdTimer->Clone();
+		TS_ASSERT_THROWS_NOTHING(cmdTimer->Execute(2));
+		TS_TRACE("Finish clone command");
+	}
+
+private:
+	CommandTimer<int>* cmdTimer;
 
 };
-
 
 #endif /* SRC_TEST_TESTCOMMAND_H_ */
