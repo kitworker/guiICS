@@ -34,6 +34,14 @@ public:
 		TS_TRACE("Finish clone command");
 	}
 
+	void test3MacroCmd(void) {
+		TS_TRACE("Test create MacroCommand");
+
+		macroCommand::MacroCommand<int>* macro = new macroCommand::MacroCommand<int>();
+
+		TS_TRACE("Finishing create MacroCommand");
+	}
+
 private:
 	CommandTimer<int>* cmdTimer;
 

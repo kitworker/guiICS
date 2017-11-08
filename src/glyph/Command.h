@@ -52,6 +52,7 @@ public:
 	virtual ICommand<TContext>* Clone();
 };
 
+namespace macroCommand {
 /* Use this class object as a branch messages parameter
  * Object command as a strategy
  *
@@ -60,20 +61,20 @@ public:
  * Ã�Â½Ã�Â¾ Ã�Â±Ã‘Æ’Ã�Â´Ã‘Æ’Ã‘â€š Ã�Â»Ã�Â¸ Ã�Â¾Ã�Â½Ã�Â¸ Ã�Â²Ã‘â€¹Ã�Â¿Ã�Â¾Ã�Â»Ã�Â½Ã�ÂµÃ�Â½Ã‘â€¹ Ã‘â‚¬Ã�ÂµÃ‘Ë†Ã�Â°Ã�ÂµÃ‘â€š Ã�ÂºÃ�Â¾Ã�Â½Ã‘â€šÃ�ÂµÃ�ÂºÃ‘ï¿½Ã‘â€š(proxy)
  *
  */
-template <class TContext>
-class MacroCommand : ICommand<TContext> {
-public: MacroCommand();
+template<class TContext>
+class MacroCommand: ICommand<TContext> {
+public:
 	virtual ~MacroCommand();
-	// TODO Add()... Remove()...
-	virtual void Add(ICommand<TContext>);
-	virtual void Execute(TContext proxy) ;
-	virtual void Unexecute(TContext);
+	MacroCommand();
+	virtual void Execute(TContext proxy);
+//	virtual void Unexecute(TContext);
 	virtual ICommand<TContext>* Clone();
+	virtual void Add(ICommand<TContext> *);
 private:
 	// The collection contains the history of the commands any client
-	Collection<ICommand<TContext>, std::list> mCmd;
+	Collection<ICommand<TContext>*, std::list> mCmds;
 };
-
+}
 
 
 #endif /* SRC_GLYPH_COMMAND_H_ */
