@@ -67,7 +67,7 @@ public:
 	virtual ~MacroCommand();
 	MacroCommand();
 	virtual void Execute(TContext proxy);
-//	virtual void Unexecute(TContext);
+	virtual void Unexecute(TContext);
 	virtual ICommand<TContext>* Clone();
 	virtual void Add(ICommand<TContext> *);
 private:

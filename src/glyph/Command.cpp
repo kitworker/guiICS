@@ -29,7 +29,9 @@ namespace macroCommand {
 	template <class TContext>
 	void MacroCommand<TContext>::Execute(TContext context) {
 		for(mCmds.First(); !mCmds.IsDone(); mCmds.Next() ){
-			//*mCmds.CurrentItem()->Execute(context);
+		//	*mCmds.CurrentItem()->Execute(context);
+			ICommand<TContext>* cmd = *mCmds.CurrentItem();
+			cmd->Execute(context);
 		}
 	}
 	template<class TContext>
@@ -50,6 +52,11 @@ namespace macroCommand {
 	void MacroCommand<TContext>::Add(ICommand<TContext>* cmd) {
 		mCmds.Append(cmd);
 	}
+	template<class TContext >
+	void MacroCommand<TContext>::Unexecute(TContext cntx) {
+		ICommand<TContext>::PrintLog("Macrocommand unexecute");
+	}
+
 }
 
 // Timer client's commands
@@ -63,8 +70,8 @@ CommandTimer<TContext>::~CommandTimer() {
 }
 
 template <class TContext>
-void CommandTimer<TContext>::Execute(TContext proxy) { // or condition
-	ICommand<TContext>::PrintLog("command timer");
+void CommandTimer<TContext>::Execute(TContext bridge) { // or condition
+	ICommand<TContext>::PrintLog("command timer" +  std::to_string(bridge) ) ;
 }
 
 template <class TContext>
