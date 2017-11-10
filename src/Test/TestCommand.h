@@ -37,14 +37,23 @@ public:
 	void test3MacroCmd(void) {
 		TS_TRACE("Test create MacroCommand");
 
-		macroCommand::MacroCommand<int>* macro = new macroCommand::MacroCommand<int>();
+		macro = new macroCommand::MacroCommand<int>();
+		macro->Execute(3);
 
 		TS_TRACE("Finishing create MacroCommand");
 	}
 
+	void test4AddToMacroCmd(void) {
+		TS_TRACE("Test function Add of Macrocommand");
+		macro->Add(cmdTimer);
+		macro->Execute(4);
+		TS_TRACE("Finishing test function Add of Macrocommand");
+
+	}
+
 private:
 	CommandTimer<int>* cmdTimer;
-
+	macroCommand::MacroCommand<int>* macro;
 };
 
 #endif /* SRC_TEST_TESTCOMMAND_H_ */

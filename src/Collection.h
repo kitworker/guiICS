@@ -8,7 +8,7 @@
 #ifndef SRC_COLLECTION_H_
 #define SRC_COLLECTION_H_
 
-// Компилируется
+// ÐšÐ¾Ð¼Ð¿Ð¸Ð»Ð¸Ñ€ÑƒÐµÑ‚Ñ�Ñ�
 
 #include <cstddef>
 #include <iostream>

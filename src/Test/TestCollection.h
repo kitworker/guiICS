@@ -10,63 +10,126 @@
 
 #include <cxxtest/TestSuite.h>
 
+#include <memory>
+
 #include "../Exception.h"
 #include "../Collection.h"
 
+class MyClass {
+public:
+	MyClass(const int numIter) :
+			iterator(numIter), log(" ") {
+		log = "Creating MyClass object " + std::to_string(iterator);
+		cout << log << endl;
+	}
+	virtual ~MyClass() {
+		log = "Destroying MyClass object  " + std::to_string(iterator);
+		cout << log << endl;
+	}
+	void method() {
+		log = "Called method of MyClass object";
+		cout << log << endl;
+	}
+	int GetItertor(void) {
+		return iterator;
+	}
+
+private:
+	int iterator;
+	std::string log;
+};
+
+
 class TestCollection: public CxxTest::TestSuite {
 public:
+
+
+	typedef typename std::shared_ptr<MyClass> SharedMyClass;
 	void test1Create(void) {
 		TS_TRACE("Create Collection");
 
-		TS_ASSERT_THROWS_NOTHING((coll = new Collection<int, std::list> ));
-		TS_ASSERT_THROWS_NOTHING((new Collection<int, std::vector> ));
+		TS_ASSERT_THROWS_NOTHING((coll = new Collection<SharedMyClass, std::list> ));
+		TS_ASSERT_THROWS_NOTHING((new Collection<SharedMyClass, std::vector> ));
 
 		TS_TRACE("Finishing test created Collection");
 	}
 
 	void test2Add(void) {
 		TS_TRACE("Create Collection");
-		test = 0;
-		coll->Append(++test);
-		coll->Append(++test);
-		coll->Append(++test);
+
+		AddItemTo(coll);
+		AddItemTo(coll);
+		AddItemTo(coll);
+
 		TS_TRACE("Finishing test created Collection");
 	}
 
 	void test3Iteration(void) {
 		TS_TRACE("Test iterator");
 
-		int finish = 0;
-		for (coll->First(); !coll->IsDone(); coll->Next()) {
-			TS_ASSERT_EQUALS(*coll->CurrentItem(), ++finish);
-		}
+		MyForeach(coll);
+
 		TS_TRACE("Finishing iterator");
 	}
 
 	void test4Clone() {
-		TS_TRACE("Test clone");
-		Collection<int, std::list>* clon = coll->Clone();
-		clon->Append(++test);
-		clon->Append(++test);
-		clon->Append(++test);
+		TS_TRACE("Test clone the collection");
+		Collection<SharedMyClass, std::list>* clon = coll->Clone();
+
+		AddItemTo(clon);
+		AddItemTo(clon);
+		AddItemTo(clon);
+
 
 		test3Iteration();
-		delete(coll);
-
+//		delete(coll);
 //		TS_ASSERT_THROWS_ANYTHING ( test3Iteration() );
 
-		int finish = 0;
-		for (clon->First(); !clon->IsDone(); clon->Next()) {
-			TS_ASSERT_EQUALS(*clon->CurrentItem(), ++finish);
-		}
+		MyForeach(clon);
+		delete clon;
 
-		TS_TRACE("Finishing clone");
+		TS_TRACE("Finishing clone the collection");
+	}
+
+	void test5DeletColl(void) {
+		TS_TRACE("Test delete collection");
+		delete coll;
+
+	//	MyForeach(coll);
+
+		TS_TRACE("Finishing Test delete collection");
+	}
+
+	void test6LocalColl(void) {
+		TS_TRACE(" Test work shared_ptr local collection");
+
+		Collection<SharedMyClass, std::list>* loc = new Collection<
+				   SharedMyClass, std::list>();
+
+		AddItemTo(loc);
+		AddItemTo(loc);
+		AddItemTo(loc);
+
+		TS_TRACE("Finishing Test work shared_ptr local collection");
 	}
 
 private:
+	Collection<SharedMyClass, std::list>* coll;
 	int test;
-	Collection<int, std::list>* coll;
 
+	void MyForeach(Collection<SharedMyClass, std::list> *coll){
+		int finish = 0;
+		for (coll->First(); !coll->IsDone(); coll->Next()) {
+			SharedMyClass *m = coll->CurrentItem();
+			std::cout << (*m)->GetItertor() << "\n";
+			TS_ASSERT_EQUALS((*m)->GetItertor(), ++finish);
+		}
+	}
+
+	void AddItemTo(Collection<SharedMyClass, std::list> *coll){
+		SharedMyClass m1(new MyClass(++test) );
+		coll->Append(m1);
+	}
 };
 
 #endif /* SRC_TEST_TESTCOLLECTION_H_ */
