@@ -46,12 +46,24 @@ public:
     }
 
 
-    Collection* Clone() {
-    	Collection* clon = new Collection();
-    	for(First(); !IsDone(); Next()) {
-    		clon->Append(*CurrentItem());
-    	}
-    	return clon;
+//    Collection* Clone() {
+//    	Collection* clon = new Collection();
+//    	for(First(); !IsDone(); Next()) {
+//    		clon->Append(*CurrentItem());
+//    	}
+//    	return clon;
+//    }
+//
+    Collection* Clone() const {
+
+		Contain<TData> containClon(contain);
+		iterator currClone(containClon.begin());
+		Collection* clon = new Collection();
+
+    	for (; !(currClone == containClon.end()); ++currClone) {
+			clon->Append(*(&(*currClone)));
+		}
+		return clon;
     }
 
     void  Print() {
