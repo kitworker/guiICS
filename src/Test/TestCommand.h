@@ -46,10 +46,32 @@ public:
 	void test4AddToMacroCmd(void) {
 		TS_TRACE("Test function Add of Macrocommand");
 		macro->Add(cmdTimer);
+		macro->Add(cmdTimer);
+
 		macro->Execute(4);
 		TS_TRACE("Finishing test function Add of Macrocommand");
 
 	}
+
+	void test5CmdInStringContext() {
+		TS_TRACE("Test strategy in string context");
+
+		ICommand<std::string> * cmdBtn = new CommandTimer<std::string>();
+
+		macroCommand::MacroCommand<std::string> * macroCmd =
+				new macroCommand::MacroCommand<std::string>();
+
+		macroCmd->Add(cmdBtn);
+		macroCmd->Add(cmdBtn);
+		macroCmd->Add(cmdBtn);
+
+		macroCmd->Execute(" timerStratergy in btn context  ");
+
+		macroCmd->Unexecute(" undo for timerStrategy in  btn context ");
+
+		TS_TRACE("Finishing test strategy in string context");
+	}
+
 
 private:
 	CommandTimer<int>* cmdTimer;

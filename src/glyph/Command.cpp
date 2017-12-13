@@ -71,7 +71,7 @@ CommandTimer<TContext>::~CommandTimer() {
 
 template <class TContext>
 void CommandTimer<TContext>::Execute(TContext bridge) { // or condition
-	ICommand<TContext>::PrintLog("command timer" +  std::to_string(bridge) ) ;
+	ICommand<TContext>::PrintLog("command timer" +  bridge ) ;
 }
 
 template <class TContext>
