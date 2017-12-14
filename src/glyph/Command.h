@@ -8,8 +8,9 @@
 #ifndef SRC_GLYPH_COMMAND_H_
 #define SRC_GLYPH_COMMAND_H_
 
-#include "../Collection.h"
 #include <string>
+#include <memory>
+#include "../Collection.h"
 // Unwanted using virtual function in template class
 // 1) Template template <class TContext> replace on Bridge
 //  ) Command as Prototype
@@ -64,6 +65,8 @@ namespace macroCommand {
 template<class TContext>
 class MacroCommand: ICommand<TContext> {
 public:
+	typedef Collection<ICommand<TContext>*, list> myColl;
+	typedef typename std::shared_ptr<myColl> SharedMyColl;
 	virtual ~MacroCommand();
 	MacroCommand();
 	virtual void Execute(TContext proxy);
@@ -72,7 +75,9 @@ public:
 	virtual void Add(ICommand<TContext> *);
 private:
 	// The collection contains the history of the commands any client
-	Collection<ICommand<TContext>*, std::list> mCmds;
+	SharedMyColl* mCmds;
+	SharedMyColl* mTestPtr;
+
 };
 }
 
