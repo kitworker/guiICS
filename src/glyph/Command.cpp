@@ -75,7 +75,7 @@ CommandTimer<TContext>::~CommandTimer() {
 
 template <class TContext>
 void CommandTimer<TContext>::Execute(TContext bridge) { // or condition
-	ICommand<TContext>::PrintLog("command timer" +  bridge ) ;
+	ICommand<TContext>::PrintLog("command as strategy of timer in context " +  bridge) ;
 }
 
 template <class TContext>
@@ -113,11 +113,11 @@ CommandUser<TContext>::CommandUser() {
 
 template <class TContext>
 void CommandUser<TContext>::Execute(TContext t) {
-	std::cout << " undo command timer \n" ;
+	ICommand<TContext>::PrintLog("command as strategy of user in context " +  t) ;
 }
 template <class TContext>
 void CommandUser<TContext>::Unexecute(TContext t) {
-	std::cout << " undo command timer \n" ;
+	std::cout << " undo command user \n" ;
 }
 
 

@@ -56,18 +56,20 @@ public:
 	void test5CmdInStringContext() {
 		TS_TRACE("Test strategy in string context");
 
-		ICommand<std::string> * cmdBtn = new CommandTimer<std::string>();
+		ICommand<std::string> * cmdTimer = new CommandTimer<std::string>();
+		ICommand<std::string> * cmdUser = new CommandUser<std::string>();
 
 		macroCommand::MacroCommand<std::string> * macroCmd =
 				new macroCommand::MacroCommand<std::string>();
 
-		macroCmd->Add(cmdBtn);
-		macroCmd->Add(cmdBtn);
-		macroCmd->Add(cmdBtn);
+		macroCmd->Add(cmdTimer);
+		macroCmd->Add(cmdUser);
 
-		macroCmd->Execute(" timerStratergy in btn context  ");
 
-		macroCmd->Unexecute(" undo for timerStrategy in  btn context ");
+
+		macroCmd->Execute("an anlg ");
+
+		macroCmd->Unexecute(" undo for timerStrategy in  anlg context ");
 
 		TS_TRACE("Finishing test strategy in string context");
 	}
