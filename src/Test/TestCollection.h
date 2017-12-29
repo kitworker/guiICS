@@ -120,6 +120,19 @@ public:
 		TS_TRACE("Finishing Test work shared_ptr local collection");
 	}
 
+	void test7DeleteElementColl(void) {
+		TS_TRACE(" Test delete element collection");
+
+		SharedMyColl loc(new myColl());
+		AddItemTo(loc, 4);
+		AddItemTo(loc, 4);
+		AddItemTo(loc, 4);
+	//	loc->DeleteCurrent();
+		MyForeach(loc);
+
+		TS_TRACE("Finishing Test delete element collection");
+	}
+
 private:
 	SharedMyColl* coll;
 	int test;

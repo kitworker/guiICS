@@ -45,6 +45,11 @@ public:
         return &(*curr);
     }
 
+    void DeleteCurrent() {
+    	curr = contain.erase(curr);
+    }
+
+
 
 //    Collection* Clone() {
 //    	Collection* clon = new Collection();
