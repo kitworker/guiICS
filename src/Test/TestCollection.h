@@ -83,6 +83,7 @@ public:
 		// clone
 		SharedMyColl clon((*coll)->Clone());
 
+
 		//ActionChange(*coll); // when will be changed global pointer coll, and over tests retinue errors
 		AddItemTo(clon, 2);
 		MyForeach(clon);
@@ -100,12 +101,19 @@ public:
 		TS_TRACE("Finishing clone the collection");
 	}
 
+	void test5_1CloneOnHeap(void) {
+		TS_TRACE("Test cloning collection in heap ");
+		clonColl = new SharedMyColl( (*coll)->Clone() );
+		delete & (*clonColl);
+		// TODO That is deleted?
+		SharedMyColl* locaClonColl = new SharedMyColl( (*coll)->Clone() );
+		TS_TRACE("Finishing  test cloning collection in heap ");
+	}
+
 	void test5DeletColl(void) {
 		TS_TRACE("Test delete collection");
-
 		delete &(*coll);	// very impotent
 		//MyForeach(*coll);	// bad test
-
 		TS_TRACE("Finishing Test delete collection");
 	}
 
@@ -123,18 +131,18 @@ public:
 	void test7DeleteElementColl(void) {
 		TS_TRACE(" Test delete element collection");
 
-		SharedMyColl loc(new myColl());
-		AddItemTo(loc, 4);
-		AddItemTo(loc, 4);
-		AddItemTo(loc, 4);
-	//	loc->DeleteCurrent();
-		MyForeach(loc);
+		//  TODO That is show, if SharedMyColl* locaClonColl exit?
+		MyForeach(*clonColl);
+		TS_TRACE(" after delete element");
+		//(*clonColl)->DeleteCurrent();
 
 		TS_TRACE("Finishing Test delete element collection");
 	}
 
+
 private:
 	SharedMyColl* coll;
+	SharedMyColl* clonColl;
 	int test;
 
 	void MyForeach(SharedMyColl coll) {
