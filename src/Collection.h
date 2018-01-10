@@ -21,6 +21,7 @@ template< typename TData, template<typename, typename Alloc = allocator<TData> >
 class Collection {
 public:
     typedef typename Contain<TData>::iterator iterator;
+    typedef typename Contain<TData>::const_iterator const_iterator;
     Collection() :
         contain(), curr(begin()) {
     }
@@ -49,8 +50,6 @@ public:
     	curr = contain.erase(curr);
     }
 
-
-
 //    Collection* Clone() {
 //    	Collection* clon = new Collection();
 //    	for(First(); !IsDone(); Next()) {
@@ -59,17 +58,34 @@ public:
 //    	return clon;
 //    }
 //
-    Collection* Clone() const {
+//    Collection* Clone() const {
+//
+//		Contain<TData> containClon(contain);
+//		iterator currClone(containClon.begin());
+//		Collection* clon = new Collection();
+//
+//    	for (; !(currClone == containClon.end()); ++currClone) {
+//			clon->Append(*(&(*currClone)));
+//		}
+//		return clon;
+//    }
+//
+//	Collection* Clone() const {
+//		Collection* clon = new Collection();
+//		for (auto it = contain.begin(); it != contain.end(); ++it) {
+//			clon->Append(*it);
+//		}
+//		return clon;
+//	}
 
-		Contain<TData> containClon(contain);
-		iterator currClone(containClon.begin());
+	Collection* Clone() const {
 		Collection* clon = new Collection();
-
-    	for (; !(currClone == containClon.end()); ++currClone) {
-			clon->Append(*(&(*currClone)));
+		for (const_iterator it = contain.begin(); it != contain.end(); ++it) {
+			clon->Append(*it);
 		}
 		return clon;
-    }
+	}
+
 
     void  Print() {
     	for(First(); !IsDone(); Next()) {

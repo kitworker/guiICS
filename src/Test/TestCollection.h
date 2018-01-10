@@ -103,8 +103,8 @@ public:
 
 	void test5_1CloneOnHeap(void) {
 		TS_TRACE("Test cloning collection in heap ");
-		clonColl = new SharedMyColl( (*coll)->Clone() );
-		delete & (*clonColl);
+//		clonColl = new SharedMyColl( (*coll)->Clone() );
+//		delete & (*clonColl);
 		// TODO That is deleted?
 		SharedMyColl* locaClonColl = new SharedMyColl( (*coll)->Clone() );
 		TS_TRACE("Finishing  test cloning collection in heap ");
