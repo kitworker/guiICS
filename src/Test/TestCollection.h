@@ -103,7 +103,7 @@ public:
 
 	void test5_1CloneOnHeap(void) {
 		TS_TRACE("Test cloning collection in heap ");
-//		clonColl = new SharedMyColl( (*coll)->Clone() );
+		clonColl = new SharedMyColl( (*coll)->Clone() );
 //		delete & (*clonColl);
 		// TODO That is deleted?
 		SharedMyColl* locaClonColl = new SharedMyColl( (*coll)->Clone() );
@@ -138,6 +138,56 @@ public:
 
 		TS_TRACE("Finishing Test delete element collection");
 	}
+	/*********************************/
+
+	void test8CreateSempleColl(void) {
+		TS_TRACE(" Test create collection less shared_ptr");
+		// old
+		myColl* smpColl = new myColl();
+		MyClass* m0 = new MyClass(0, 0);
+		smpColl->Append(*m0);
+		TS_TRACE("Finishing Test create collection less shared_ptr");
+	}
+
+	void test8_1CreateSempleColl(void) {
+		TS_TRACE(" Test create collection with shared_ptr");
+		//new using shared_ptr
+		SharedMyColl alisSharColl;
+		alisSharColl = std::make_shared<myColl>();
+		MyClass* m0 = new MyClass(0, 0);
+		alisSharColl->Append(*m0);
+		TS_TRACE("Finishing Test create collection with shared_ptr");
+	}
+
+	void test9Clone(void) {
+		TS_TRACE(" Test 9 ");
+		SharedMyColl alisSharColl;
+		alisSharColl = std::make_shared<myColl>();
+		AddItemTo(alisSharColl, 1);
+
+		SharedMyColl clonSharColl( alisSharColl->Clone() );
+		AddItemTo(clonSharColl, 2);
+	}
+//
+//	void test10DeleteForSempleColl(void) {  // less a shared_ptr, because need delete m0
+//		myColl* smpColl = new myColl();
+//		MyClass* m0 = new MyClass(0, 1);
+//		smpColl->Append(*m0);
+//		delete m0; // because was occur copy the object to container
+//		smpColl->Append( MyClass(1, 1));
+//		smpColl->Append( MyClass(2, 1));
+//		smpColl->First();
+//		smpColl->DeleteCurrent();
+//	//	smpColl->Next(); // jump over object 1
+//		smpColl->DeleteCurrent();
+//		smpColl->DeleteCurrent();
+//		smpColl->DeleteCurrent();
+//
+//		for ( smpColl->First(); !smpColl->IsDone(); smpColl->Next()) {
+//				MyClass* m = smpColl->CurrentItem();
+//				std::cout << m->GetNumber() << "\n";
+//		}
+//	}
 
 
 private:
