@@ -47,7 +47,9 @@ public:
     }
 
     void DeleteCurrent() {
-    	curr = contain.erase(curr);
+    	if(!IsDone()) {
+    		curr = contain.erase(curr);
+    	}
     }
 
 //    Collection* Clone() {
