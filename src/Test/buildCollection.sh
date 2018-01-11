@@ -8,7 +8,7 @@ cxxtestgen --error-printer  -o runner.cpp TestCollection.h
 # @:main
 
 # @compile:
-g++ -o runner -I$CXXTEST runner.cpp
+g++ -std=c++11 -o runner -I$CXXTEST runner.cpp
 # @:compile
 
 ./runner > buildRunner.log
