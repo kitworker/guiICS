@@ -22,8 +22,9 @@ class Collection {
 public:
     typedef typename Contain<TData>::iterator iterator;
     typedef typename Contain<TData>::const_iterator const_iterator;
+    typedef typename Contain<TData>::reverse_iterator reverse_iterator;
     Collection() :
-        contain(), curr(begin()) {
+        contain(), curr(begin()), rCurr( begin() ) {
     }
 
     void Append(const TData& t) {
@@ -34,13 +35,28 @@ public:
         curr = begin();
     }
 
+    void End() {
+    	rCurr = rbegin();
+    }
+
+
     void Next() {
         ++curr;
     }
 
+    void Prev() {
+    	--curr;
+    }
+
+
     bool IsDone() {
         return curr == end();
     }
+
+    bool IsHead() {
+    	return curr == rend();
+    }
+
 
     TData * CurrentItem() {
         return &(*curr);
@@ -51,34 +67,6 @@ public:
     		curr = contain.erase(curr);
     	}
     }
-
-//    Collection* Clone() {
-//    	Collection* clon = new Collection();
-//    	for(First(); !IsDone(); Next()) {
-//    		clon->Append(*CurrentItem());
-//    	}
-//    	return clon;
-//    }
-//
-//    Collection* Clone() const {
-//
-//		Contain<TData> containClon(contain);
-//		iterator currClone(containClon.begin());
-//		Collection* clon = new Collection();
-//
-//    	for (; !(currClone == containClon.end()); ++currClone) {
-//			clon->Append(*(&(*currClone)));
-//		}
-//		return clon;
-//    }
-//
-//	Collection* Clone() const {
-//		Collection* clon = new Collection();
-//		for (auto it = contain.begin(); it != contain.end(); ++it) {
-//			clon->Append(*it);
-//		}
-//		return clon;
-//	}
 
 	Collection* Clone() const {
 		Collection* clon = new Collection();
@@ -103,10 +91,18 @@ private:
     iterator end() {
         return contain.end();
     }
+    reverse_iterator rbegin() {
+        return contain.rbegin();
+    }
+    reverse_iterator rend()  {
+        return contain.rend();
+    }
+
 
 private:
     Contain<TData> contain;
     iterator  curr;
+    reverse_iterator  rCurr;
 };
 
 

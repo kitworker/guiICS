@@ -169,31 +169,48 @@ public:
 		AddItemTo(clonSharColl, 2);
 	}
 //
-//	void test10DeleteForSempleColl(void) {  // less a shared_ptr, because need delete m0
-//		myColl* smpColl = new myColl();
-//		MyClass* m0 = new MyClass(0, 1);
-//		smpColl->Append(*m0);
-//		delete m0; // because was occur copy the object to container
-//		smpColl->Append( MyClass(1, 1));
-//		smpColl->Append( MyClass(2, 1));
-//		smpColl->First();
-//		smpColl->DeleteCurrent();
-//	//	smpColl->Next(); // jump over object 1
-//		smpColl->DeleteCurrent();
-//		smpColl->DeleteCurrent();
-//		smpColl->DeleteCurrent();
-//
-//		for ( smpColl->First(); !smpColl->IsDone(); smpColl->Next()) {
+	void test10DeleteForSempleColl(void) {  // less a shared_ptr, because need delete m0
+		myColl* smpColl = new myColl();
+		MyClass* m0 = new MyClass(0, 1);
+		smpColl->Append(*m0);
+		delete m0; // because was occur copy the object to container
+		smpColl->Append( MyClass(1, 1));
+		smpColl->Append( MyClass(2, 1));
+		smpColl->First();
+		smpColl->DeleteCurrent();
+	//	smpColl->Next(); // jump over object 1
+		smpColl->DeleteCurrent();
+		smpColl->DeleteCurrent();
+		smpColl->DeleteCurrent();
+
+		for ( smpColl->First(); !smpColl->IsDone(); smpColl->Next()) {
+				MyClass* m = smpColl->CurrentItem();
+				std::cout << m->GetNumber() << "\n";
+		}
+	}
+
+	void test11RevertIterator(void) {  // less a shared_ptr, because need delete m0
+		myColl* smpColl = new myColl();
+		MyClass* m0 = new MyClass(0, 1);
+		smpColl->Append(*m0);
+		delete m0; // because was occur copy the object to container
+		smpColl->Append( MyClass(1, 1));
+		smpColl->Append( MyClass(2, 1));
+		smpColl->First();
+		smpColl->DeleteCurrent();
+	//	smpColl->Next(); // jump over object 1
+		smpColl->DeleteCurrent();
+		smpColl->DeleteCurrent();
+		smpColl->DeleteCurrent();
+
+		smpColl->End();
+
+//		for ( smpColl->End(); !smpColl->IsHead(); smpColl->Prev()) {
 //				MyClass* m = smpColl->CurrentItem();
 //				std::cout << m->GetNumber() << "\n";
 //		}
-//	}
+	}
 
-
-private:
-	SharedMyColl* coll;
-	SharedMyColl* clonColl;
-	int test;
 
 	void MyForeach(SharedMyColl coll) {
 		int finish = 0;
@@ -215,6 +232,12 @@ private:
 			m->method();
 		}
 	}
+
+private:
+	SharedMyColl* coll;
+	SharedMyColl* clonColl;
+	int test;
+
 
 };
 
