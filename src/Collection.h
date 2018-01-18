@@ -24,7 +24,7 @@ public:
     typedef typename Contain<TData>::const_iterator const_iterator;
     typedef typename Contain<TData>::reverse_iterator reverse_iterator;
     Collection() :
-        contain(), curr(begin()), rCurr( begin() ) {
+        contain(), curr(begin()), rCurr( begin() ), forward(true) {
     }
 
     void Append(const TData& t) {
@@ -32,20 +32,24 @@ public:
     }
 
     void First() {
+    	forward = true;
         curr = begin();
     }
-
+    // http://qaru.site/questions/134723/can-i-convert-a-reverse-iterator-to-a-forward-iterator
     void End() {
+    	forward = false;
     	rCurr = rbegin();
     }
 
 
     void Next() {
+    	forward = true;
         ++curr;
     }
 
     void Prev() {
-    	--curr;
+    	forward = false;
+    	++rCurr;
     }
 
 
@@ -54,17 +58,19 @@ public:
     }
 
     bool IsHead() {
-    	return curr == rend();
+    	return rCurr == rend();
+    	// if t
+    	//First next true
     }
 
 
     TData * CurrentItem() {
-        return &(*curr);
+        return &(*Current() );
     }
 
     void DeleteCurrent() {
     	if(!IsDone()) {
-    		curr = contain.erase(curr);
+    		curr = contain.erase(Current());
     	}
     }
 
@@ -98,11 +104,20 @@ private:
         return contain.rend();
     }
 
+    iterator Current()
+    {
+        if (forward == true)
+            return curr;
+        else
+            //(rCurr + 1 ).base();
+        	//Prev();
+        	return (rCurr).base();
+    }
 
-private:
     Contain<TData> contain;
     iterator  curr;
     reverse_iterator  rCurr;
+    bool forward;
 };
 
 

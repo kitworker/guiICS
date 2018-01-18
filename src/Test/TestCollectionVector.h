@@ -43,12 +43,12 @@ private:
 	int mIdColl;
 };
 
-class TestCollection: public CxxTest::TestSuite {
+class TestCollectionVector: public CxxTest::TestSuite {
 public:
 
 
 	//typedef typename std::shared_ptr<MyClass> SharedMyClass;
-	typedef Collection<MyClass, list> myColl;
+	typedef Collection<MyClass, vector> myColl;
 	typedef typename std::shared_ptr<myColl> SharedMyColl;
 
 	void test1Create(void) {
@@ -167,11 +167,9 @@ public:
 
 		SharedMyColl clonSharColl( alisSharColl->Clone() );
 		AddItemTo(clonSharColl, 2);
-		TS_TRACE("end test  9 ");
 	}
 //
 	void test10DeleteForSempleColl(void) {  // less a shared_ptr, because need delete m0
-		TS_TRACE(" Test 10 ");
 		myColl* smpColl = new myColl();
 		MyClass* m0 = new MyClass(0, 1);
 		smpColl->Append(*m0);
@@ -189,29 +187,6 @@ public:
 				MyClass* m = smpColl->CurrentItem();
 				std::cout << m->GetNumber() << "\n";
 		}
-		TS_TRACE(" end test 10 ");
-	}
-
-	void test11RevertIterator(void) {  // less a shared_ptr, because need delete m0
-		myColl* smpColl = new myColl();
-		MyClass* m0 = new MyClass(0, 1);
-		smpColl->Append(*m0);
-		delete m0; // because was occur copy the object to container
-		smpColl->Append( MyClass(1, 1));
-		smpColl->Append( MyClass(2, 1));
-		smpColl->First();
-		smpColl->DeleteCurrent();
-	//	smpColl->Next(); // jump over object 1
-		smpColl->DeleteCurrent();
-		smpColl->DeleteCurrent();
-		smpColl->DeleteCurrent();
-
-		//smpColl->End();
-
-//		for ( smpColl->End(); !smpColl->IsHead(); smpColl->Prev()) {
-//				MyClass* m = smpColl->CurrentItem();
-//				std::cout << m->GetNumber() << "\n";
-//		}
 	}
 
 	void test12RevertPrint(void) {
@@ -225,19 +200,10 @@ public:
 					smpColl->Append( MyClass(2, 1));
 					smpColl->Append( MyClass(3, 1));
 
-
-
 					for ( smpColl->End(); !smpColl->IsHead(); smpColl->Prev()) {
 						MyClass* m = smpColl->CurrentItem();
 						std::cout << m->GetNumber() << "\n";
 					}
-					{
-						smpColl->First();
-						MyClass* m = smpColl->CurrentItem();
-						std::cout << m->GetNumber() << "\n";
-					}
-
-
 					std:: cout << "forward" << std::endl;
 					for ( smpColl->First(); !smpColl->IsDone(); smpColl->Next()) {
 							MyClass* m = smpColl->CurrentItem();
@@ -247,6 +213,7 @@ public:
 
 			TS_TRACE("Finishing Test 12 revert print list ");
 		}
+
 
 
 	void MyForeach(SharedMyColl coll) {
