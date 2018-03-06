@@ -21,6 +21,7 @@ int main() {
 	std::string t;
 	int id = 1;
 	Glyph* glyph = new Frame(id);
+	glyph;
 
 
 	return 0;

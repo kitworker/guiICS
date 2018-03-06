@@ -34,11 +34,13 @@ public:
     void First() {
     	forward = true;
         curr = begin();
+        // iter = factIter.CreatIterator(FWD);
     }
     // http://qaru.site/questions/134723/can-i-convert-a-reverse-iterator-to-a-forward-iterator
     void End() {
     	forward = false;
     	rCurr = rbegin();
+    	// iter = factIter.CreatIterator(FWD);
     }
 
 
@@ -104,20 +106,25 @@ private:
         return contain.rend();
     }
 
-    iterator Current()
-    {
+    iterator Current() {
         if (forward == true)
             return curr;
         else
             //(rCurr + 1 ).base();
-        	//Prev();
+        	Prev();
         	return (rCurr).base();
     }
 
     Contain<TData> contain;
     iterator  curr;
     reverse_iterator  rCurr;
-    bool forward;
+
+     bool forward;
+     // TODO hack for reverse iterator
+    // bool frdDir;
+    // FactIterator fact;
+    // IIterator iter;
+
 };
 
 
