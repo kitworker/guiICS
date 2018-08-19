@@ -13,7 +13,7 @@
 #include <memory>
 
 #include "../Exception.h"
-#include "../Collection.h"
+#include "../Collection/Collection.h"
 
 class MyClass {
 public:

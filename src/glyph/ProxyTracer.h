@@ -21,7 +21,7 @@ enum IdGlyph {
 	// Static >= 0  /* it comfortable for ABN_ of Photon */
 
 	// Dynamic  < 0
-}
+};
 
 
 
@@ -29,34 +29,34 @@ enum IdGlyph {
  * The class represent the wrapper for macro-commands
  * as pattern state
  */
-class BrenchMsg {
-	// Type
-	/*
-	 * for Branch
-	 * for Observer
-	 * not broadCast?
-	 */
-
-	//  Msg state -2 -1 0 1 2 ... // Задел
-
-	// Direction:
-	/*
-	 *\param formChild
-	 *\param fromParent
-	 */
-private:
-	// (macro) Commands
-	/*
-	 * Commands have mast run execute and unexecute for test
-	 */
-
-
-	//
-	// Template parameter for data
-	// and need Don't forget of Leaf item in composition
-
-
-};
+//class BrenchMsg {
+//	// Type
+//	/*
+//	 * for Branch
+//	 * for Observer
+//	 * not broadCast?
+//	 */
+//
+//	//  Msg state -2 -1 0 1 2 ... // Задел
+//
+//	// Direction:
+//	/*
+//	 *\param formChild
+//	 *\param fromParent
+//	 */
+//private:
+//	// (macro) Commands
+//	/*
+//	 * Commands have mast run execute and unexecute for test
+//	 */
+//
+//
+//	//
+//	// Template parameter for data
+//	// and need Don't forget of Leaf item in composition
+//
+//
+//};
 //
 class ProxyTracer {
 public:

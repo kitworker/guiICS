@@ -43,7 +43,7 @@ private:
 	int mIdColl;
 };
 
-class TestCollection: public CxxTest::TestSuite {
+class TestIterator: public CxxTest::TestSuite {
 public:
 
 
